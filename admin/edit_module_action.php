@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $host = 'localhost';
 $db = 'cybersecurity_db';
 $user = 'root';
@@ -17,11 +19,11 @@ $description = $_POST['description'];
 $sql = "UPDATE modules SET title = '$title', description = '$description' WHERE id = $module_id";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Module updated successfully";
-    header("Location: index.php");
+    $_SESSION['message'] = "Module updated successfully!";
 } else {
-    echo "Error updating module: " . $conn->error;
+    $_SESSION['error'] = "Error updating module: " . $conn->error;
 }
 
 $conn->close();
+header("Location: index.php");
 ?>

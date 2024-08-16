@@ -4,6 +4,15 @@ if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit;
 }
+
+if (isset($_SESSION['message'])) {
+    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+    unset($_SESSION['message']);
+}
+if (isset($_SESSION['error'])) {
+    echo '<div class="alert alert-danger">' . $_SESSION['error'] . '</div>';
+    unset($_SESSION['error']);
+}
 ?>
 
 <!DOCTYPE html>
