@@ -1,0 +1,29 @@
+<?php
+$host = 'localhost';
+$db = 'cybersecurity_db';
+$user = 'root';
+$pass = '';
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$module_id = $_POST['module_id'];
+$rating = $_POST['rating'];
+$comments = $_POST['comments'];
+
+$sql = "INSERT INTO feedback (module_id, rating, comments) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("iis", $module_id, $rating, $comments);
+
+if ($stmt->execute()) {
+    echo "Thank you for your feedback!";
+} else {
+    echo "Error submitting feedback: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>
