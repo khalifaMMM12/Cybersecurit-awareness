@@ -31,8 +31,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
                 <textarea class="form-control" id="content" name="content" rows="10" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Upload Image</label>
-                <input type="file" class="form-control" id="image" name="image">
+                <label for="images" class="form-label">Upload Images</label>
+                <input type="file" class="form-control" id="images" name="images[]" multiple>
             </div>
             <button type="submit" class="btn btn-primary">Add Module</button>
         </form>

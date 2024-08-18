@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $host = 'localhost';
 $db = 'cybersecurity_db';
 $user = 'root';
@@ -12,18 +10,41 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$module_id = $_GET['id'];
+$module_id = $_POST['module_id'];
 $title = $_POST['title'];
 $description = $_POST['description'];
+$content = $_POST['content'];
 
-$sql = "UPDATE modules SET title = '$title', description = '$description' WHERE id = $module_id";
+// Update module details
+$sql = "UPDATE modules SET title = ?, description = ?, content = ? WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssi", $title, $description, $content, $module_id);
 
-if ($conn->query($sql) === TRUE) {
-    $_SESSION['message'] = "Module updated successfully!";
+if ($stmt->execute()) {
+    // Handle image uploads
+    if (!empty($_FILES['images']['name'][0])) {
+        $image_paths = $_FILES['images']['tmp_name'];
+        
+        foreach ($_FILES['images']['name'] as $key => $image_name) {
+            $image_tmp = $image_paths[$key];
+            $image_path = 'uploads/' . $image_name;
+
+            if (move_uploaded_file($image_tmp, $image_path)) {
+                // Insert new image paths into the database
+                $sql_image = "INSERT INTO module_images (module_id, image_path) VALUES (?, ?)";
+                $stmt_image = $conn->prepare($sql_image);
+                $stmt_image->bind_param("is", $module_id, $image_path);
+                $stmt_image->execute();
+            }
+        }
+    }
+
+    // Redirect or show success message
+    header("Location: index.php?message=Module updated successfully");
 } else {
-    $_SESSION['error'] = "Error updating module: " . $conn->error;
+    echo "Error updating module: " . $stmt->error;
 }
 
+$stmt->close();
 $conn->close();
-header("Location: index.php");
 ?>
