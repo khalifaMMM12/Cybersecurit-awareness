@@ -110,9 +110,9 @@ footer {
     padding: 20px;
     text-align: center;
     font-size: 0.9rem;
-    position: absolute;
+    position: position;
     width: 100%;
-    bottom: 10px;
+    /* bottom: 10px; */
 }
 
 carousel-item img {
