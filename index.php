@@ -21,7 +21,7 @@
                             <a class="nav-link active" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admin.php">Admin</a>
+                            <a class="nav-link" href="admin/admin.php">Admin</a>
                         </li>
                     </ul>
                 </div>
@@ -32,10 +32,17 @@
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/cybersecurity1.jpg" class="d-block w-100" alt="Cybersecurity Image 1">
+                <img src="img/cyber.jpg" class="d-block w-100" alt="Cybersecurity Image 1">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Protect Your Data</h5>
                     <p>Stay informed about the latest cybersecurity threats and protection strategies.</p>
+                </div>
+            </div>
+            <div class="carousel-item active">
+                <img src="img/safe.jpg" class="d-block w-100" alt="Cybersecurity Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Stay safe from cyber attacks</h5>
+                    <p></p>
                 </div>
             </div>
             <!-- Add more carousel items here -->

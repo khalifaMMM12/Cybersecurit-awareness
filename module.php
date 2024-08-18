@@ -104,7 +104,7 @@ $conn->close();
 
         <!-- Feedback Button -->
         <div class="mt-5">
-            <a href="feedback.php?module_id=<?php echo $module_id; ?>" class="btn btn-primary">Give Feedback</a>
+            <a href="feedback.php?module_id=<?php echo $module_id; ?>" class="btn btn-primary">Give experience</a>
         </div>
     </div>
 

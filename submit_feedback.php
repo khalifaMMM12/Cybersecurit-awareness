@@ -19,9 +19,9 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("iis", $module_id, $rating, $comments);
 
 if ($stmt->execute()) {
-    echo "Thank you for your feedback!";
+    echo "<script>alert('Thank you for your feedback!') window.location.href = 'feedback.php'; </script>;"
 } else {
-    echo "Error submitting feedback: " . $stmt->error;
+    echo "<script>alert('Error submitting feedback:') window.location.href = 'feedback.php';</script>;" $stmt->error;
 }
 
 $stmt->close();

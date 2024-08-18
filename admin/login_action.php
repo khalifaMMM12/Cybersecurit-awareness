@@ -1,17 +1,16 @@
 <?php
 session_start();
+// Dummy credentials check (replace with actual database verification)
+$valid_username = "admin";
+$valid_password = "password";
 
-// Predefined credentials with hashed password
-$admin_username = "admin";
-$admin_password_hash = password_hash("password123", PASSWORD_DEFAULT);  
-
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-if ($username == $admin_username && password_verify($password, $admin_password_hash)) {
+if ($_POST['username'] === $valid_username && $_POST['password'] === $valid_password) {
     $_SESSION['admin_logged_in'] = true;
-    header("Location: index.php");
+    header("Location: admin.php");
+    exit;
 } else {
-    echo "Invalid credentials";
+    $_SESSION['login_error'] = "Invalid username or password.";
+    header("Location: login.php");
+    exit;
 }
 ?>

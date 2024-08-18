@@ -40,7 +40,7 @@ if ($stmt->execute()) {
     }
 
     // Redirect or show success message
-    header("Location: index.php?message=Module updated successfully");
+    header("Location: admin.php?message=Module updated successfully");
 } else {
     echo "Error updating module: " . $stmt->error;
 }

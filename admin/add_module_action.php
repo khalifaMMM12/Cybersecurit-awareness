@@ -41,7 +41,7 @@ if ($stmt->execute()) {
         }
     }
 
-    header("Location: index.php?message=Module added successfully");
+    header("Location: admin.php?message=Module added successfully");
 } else {
     echo "Error adding module: " . $stmt->error;
 }
